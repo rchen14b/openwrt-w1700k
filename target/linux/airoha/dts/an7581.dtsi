@@ -439,7 +439,12 @@
 			reg = <0x0 0x1fa20000 0x0 0x388>;
 		};
 
-		scuclk: clock-controller@1fb00000 {
+		pbus_csr: syscon@1fbe3400 {
+			compatible = "airoha,en7581-pbus-csr", "syscon";
+			reg = <0x0 0x1fbe3400 0x0 0xff>;
+		};
+
+		scuclk: clock-controller@1fa20000 {
 			compatible = "airoha,en7581-scu";
 			reg = <0x0 0x1fb00000 0x0 0x970>;
 

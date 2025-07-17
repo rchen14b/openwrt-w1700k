@@ -384,6 +384,29 @@ define Device/jotale_js76x8-32m
 endef
 TARGET_DEVICES += jotale_js76x8-32m
 
+define Device/keenetic_kn-1112
+  BLOCKSIZE := 64k
+  IMAGE_SIZE := 16121856
+  DEVICE_VENDOR := Keenetic
+  DEVICE_MODEL := KN-1112
+  IMAGES += factory.bin
+  IMAGE/factory.bin := $$(sysupgrade_bin) | pad-to $$$$(BLOCKSIZE) | \
+	check-size | zyimage -d 0x801112 -v "KN-1112"
+endef
+TARGET_DEVICES += keenetic_kn-1112
+
+define Device/keenetic_kn-1212
+  BLOCKSIZE := 64k
+  IMAGE_SIZE := 15073280
+  DEVICE_VENDOR := Keenetic
+  DEVICE_MODEL := KN-1212
+  DEVICE_PACKAGES := kmod-usb2
+  IMAGES += factory.bin
+  IMAGE/factory.bin := $$(sysupgrade_bin) | pad-to $$$$(BLOCKSIZE) | \
+	check-size | zyimage -d 0x801212 -v "KN-1212"
+endef
+TARGET_DEVICES += keenetic_kn-1212
+
 define Device/keenetic_kn-1221
   BLOCKSIZE := 64k
   IMAGE_SIZE := 29440k
@@ -1130,6 +1153,14 @@ define Device/wavlink_wl-wn570ha1
   DEVICE_PACKAGES := kmod-mt76x0e
 endef
 TARGET_DEVICES += wavlink_wl-wn570ha1
+
+define Device/wavlink_wl-wn570ha2
+  IMAGE_SIZE := 15488k
+  DEVICE_VENDOR := Wavlink
+  DEVICE_MODEL := WL-WN570HA2
+  DEVICE_PACKAGES := kmod-mt7615e kmod-mt7663-firmware-ap kmod-mt7603
+endef
+TARGET_DEVICES += wavlink_wl-wn570ha2
 
 define Device/wavlink_wl-wn575a3
   IMAGE_SIZE := 7872k
